@@ -3,9 +3,8 @@ package org.example.userservice.web;
 import lombok.RequiredArgsConstructor;
 import org.example.userservice.model.Owner;
 import org.example.userservice.repository.OwnerRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,5 +16,11 @@ public class OwnerResource {
     @GetMapping
     public List<Owner> findAll() {
         return ownerRepository.findAll();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Owner save(@RequestBody Owner owner) {
+        return ownerRepository.save(owner);
     }
 }
