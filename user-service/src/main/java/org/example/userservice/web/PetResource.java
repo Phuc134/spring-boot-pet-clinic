@@ -33,8 +33,8 @@ public class PetResource {
     @PostMapping
     public Pet createPet(@RequestBody PetRequest pet) {
         Pet newPet = new Pet();
-        pet.setName(newPet.getName());
-        pet.setBirthDate(newPet.getBirthDate());
+        newPet.setName(pet.getName());
+        newPet.setBirthDate(pet.getBirthDate());
 
         PetType petType = petTypeRepository.findById(pet.getTypeId())
                 .orElseThrow(() -> new RuntimeException("PetType not found: " + pet.getTypeId()));
