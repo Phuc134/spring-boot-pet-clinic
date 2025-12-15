@@ -1,6 +1,8 @@
 package org.example.userservice.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ public class Owner {
     private Integer id;
 
     @Column(name = "first_name")
+    @NotBlank
     private String firstName;
 
     @Column(name = "last_name")
@@ -27,6 +30,7 @@ public class Owner {
     private String city;
 
     @Column(name = "telephone")
+    @Pattern(regexp = "\\d{10}", message = "Phải là 10 số")
     private String telephone;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner", fetch = FetchType.LAZY)
